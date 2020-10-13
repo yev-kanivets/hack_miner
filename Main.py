@@ -15,8 +15,7 @@ for i in range(H):
 	visGF.append([])
 	for k in range(W):
 		gamefield[i].append(0)
-		visGF[i].append(" ")
-
+		visGF[i].append(False)
 
 
 def GameIni():
@@ -73,12 +72,15 @@ def GameIni():
 			print(str(visGF[i][k]) + " ", end=" ")"""
 
 def HandleClick(x, y):
+	visGF[x][y] = True
+	"""
 	if gamefield[x][y] == "B":
 		print("Game Over!!!")
 	elif gamefield[x][y] == " ":
-		return "OS"
+		visGF[x][y] = True
 	else:
-		return "OC"
+		print()
+		"""
 
 
 
@@ -115,6 +117,7 @@ SCREEN_W = W * SIDE;
 screen = pygame.display.set_mode([SCREEN_W, SCREEN_H])
 
 imgBomb = pygame.image.load(r'./bomb.png')
+imgHidden = pygame.image.load(r'./hidden.png')
 img0 = pygame.image.load(r'./0.png')
 img1 = pygame.image.load(r'./1.png')
 img2 = pygame.image.load(r'./2.png')
@@ -132,15 +135,18 @@ while running:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
         	pos = pygame.mouse.get_pos()
-        	x = int(pos[0] / SIDE) + 1
-        	y = int(pos[1] / SIDE) + 1
+        	x = int(pos[0] / SIDE)
+        	y = int(pos[1] / SIDE)
         	HandleClick(x, y)
 
     screen.fill((255, 255, 255))
 
     for i in range(H):
     	for j in range(W):
-    		print(gamefield[i][j])
+    		if visGF[i][j] == False:
+    			screen.blit(imgHidden, (i * SIDE, j * SIDE))
+    			continue
+
     		if gamefield[i][j] == "B":
     			screen.blit(imgBomb, (i * SIDE, j * SIDE))
     		elif gamefield[i][j] == "1":
