@@ -87,20 +87,56 @@ def Main():
 	
 	HCret = " "
 
-	while True:
-		PrintField()
-		CheckC = input("Введите координату проверки: ").split()
-		CheckC = [int(CheckC[0]), int(CheckC[1])]
+	#while True:
+	#	PrintField()
+	#	CheckC = input("Введите координату проверки: ").split()
+	#	CheckC = [int(CheckC[0]), int(CheckC[1])]
 
-		HCret = HandleClick(CheckC[0], CheckC[1])
+	#	HCret = HandleClick(CheckC[0], CheckC[1])
 
-		if HCret == "GO":
-			print("Game Over!!!")
-			break
-		elif HCret == "OC":
-			visGF[CheckC[0]][CheckC[1]] = gamefield[CheckC[0]][CheckC[1]]
-		else:
-			print("Open Space")
+	#	if HCret == "GO":
+	#		print("Game Over!!!")
+	#		break
+	#	elif HCret == "OC":
+	#		visGF[CheckC[0]][CheckC[1]] = gamefield[CheckC[0]][CheckC[1]]
+	#	else:
+	#		print("Open Space")
 
 
 Main()
+
+import pygame
+pygame.init()
+
+SIDE = 50
+SCREEN_H = H * SIDE;
+SCREEN_W = W * SIDE;
+
+screen = pygame.display.set_mode([SCREEN_W, SCREEN_H])
+bombImg = pygame.image.load(r'./bomb.png') 
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+        	pos = pygame.mouse.get_pos()
+        	x = int(pos[0] / SIDE) + 1
+        	y = int(pos[1] / SIDE) + 1
+        	HandleClick(x, y)
+
+    screen.fill((255, 255, 255))
+
+    for i in range(H):
+    	for j in range(W):
+    		if gamefield[i][j] == "B":
+    			screen.blit(bombImg, (i * SIDE, j * SIDE))
+    		else:
+    			pygame.draw.rect(screen, (0, 0, 255), (i * SIDE, j * SIDE, (i + 1) * SIDE, (j + 1) * SIDE))
+
+    		
+
+    pygame.display.flip()
+
+pygame.quit()
