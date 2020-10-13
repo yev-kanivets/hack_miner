@@ -39,6 +39,10 @@ for i in range(H):
 		visGF[i].append(False)
 
 def Restart():
+	global gamefield
+	global visGF
+	global BombC
+
 	gamefield = []
 	visGF = []
 	BombC = []
@@ -92,7 +96,13 @@ def HandleClick(x, y):
 	if gamefield[x][y] == "B":
 		isPlaying = False
 		print("Game Over!!!")
+		wantRestart = input("Хотите начать заново?")
+		if wantRestart == "Yes":
+			Restart()
+			GameIni()
+			isPlaying = True
 
+Restart()
 GameIni()
 
 import pygame
