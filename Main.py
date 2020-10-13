@@ -62,28 +62,7 @@ def HandleClick(x, y):
 		if startAgain == "Yes":
 			GameIni()
 
-def Main():
-	GameIni()
-	
-	HCret = " "
-
-	#while True:
-	#	PrintField()
-	#	CheckC = input("Введите координату проверки: ").split()
-	#	CheckC = [int(CheckC[0]), int(CheckC[1])]
-
-	#	HCret = HandleClick(CheckC[0], CheckC[1])
-
-	#	if HCret == "GO":
-	#		print("Game Over!!!")
-	#		break
-	#	elif HCret == "OC":
-	#		visGF[CheckC[0]][CheckC[1]] = gamefield[CheckC[0]][CheckC[1]]
-	#	else:
-	#		print("Open Space")
-
-
-Main()
+GameIni()
 
 import pygame
 pygame.init()
