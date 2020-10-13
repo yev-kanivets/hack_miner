@@ -2,11 +2,31 @@ import random
 
 gamefield = []
 visGF = []
+H = 9
+W = 9
+N = 12
 
-H = 10#int(input("Введите высоту поля:"))
-W = 10#int(input("Введите ширину поля:"))
-
-N = 5#int(input(f"Введите количество мин(Не больше %s):" % (str(H*W))))
+mode = input("Выберите режим (novice / student / adept / master / smith): \n")
+if mode == "novice":
+	H = 9
+	W = 9
+	N = 12
+elif mode == "student":
+	H = 12
+	W = 12
+	N = 25
+elif mode == "adept":
+	H = 15
+	W = 15
+	N = 45
+elif mode == "master":
+	H = 18
+	W = 18
+	N = 80
+else:
+	H = int(input("Введите высоту поля:"))
+	W = int(input("Введите ширину поля:"))
+	N = int(input(f"Введите количество мин(Не больше %s):" % (str(H*W))))
 
 BombC = []
 
@@ -17,6 +37,17 @@ for i in range(H):
 		gamefield[i].append(0)
 		visGF[i].append(False)
 
+def Restart():
+	gamefield = []
+	visGF = []
+	BombC = []
+
+	for i in range(H):
+		gamefield.append([])
+		visGF.append([])
+		for k in range(W):
+			gamefield[i].append(0)
+			visGF[i].append(False)
 
 def GameIni():
 	TempC = []								# Временная рандомная координата для мины
@@ -57,10 +88,8 @@ def GameIni():
 def HandleClick(x, y):
 	visGF[x][y] = True
 	if gamefield[x][y] == "B":
+		playing = False
 		print("Game Over!!!")
-		startAgain = input("Want to start again?")
-		if startAgain == "Yes":
-			GameIni()
 
 GameIni()
 
