@@ -66,15 +66,17 @@ def GameIni():
 
 			
 
-def PrintField():
+"""def PrintField():
 	for i in range(H):
 		print(" ")
 		for k in range(W):
-			print(str(visGF[i][k]) + " ", end=" ")
+			print(str(visGF[i][k]) + " ", end=" ")"""
 
 def HandleClick(x, y):
 	if gamefield[x][y] == "B":
 		return "GO"
+		print("Game Over!!!")
+		break
 	elif gamefield[x][y] == " ":
 		return "OS"
 	else:
