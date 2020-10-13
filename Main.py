@@ -54,35 +54,13 @@ def GameIni():
 		if bomb[0]-1 >=0 and gamefield[bomb[0]-1][bomb[1]] != "B":
 			gamefield[bomb[0]-1][bomb[1]] += 1
 
-	for i in range(H):
-		for k in range(W):
-			if gamefield[i][k] == 0:
-				gamefield[i][k] = " "
-			else:
-				gamefield[i][k] = str(gamefield[i][k])
-
-
-
-			
-
-"""def PrintField():
-	for i in range(H):
-		print(" ")
-		for k in range(W):
-			print(str(visGF[i][k]) + " ", end=" ")"""
-
 def HandleClick(x, y):
 	visGF[x][y] = True
-	"""
 	if gamefield[x][y] == "B":
 		print("Game Over!!!")
-	elif gamefield[x][y] == " ":
-		visGF[x][y] = True
-	else:
-		print()
-		"""
-
-
+		startAgain = input("Want to start again?")
+		if startAgain == "Yes":
+			GameIni()
 
 def Main():
 	GameIni()
@@ -149,21 +127,21 @@ while running:
 
     		if gamefield[i][j] == "B":
     			screen.blit(imgBomb, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "1":
+    		elif gamefield[i][j] == 1:
     			screen.blit(img1, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "2":
+    		elif gamefield[i][j] == 2:
     			screen.blit(img2, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "3":
+    		elif gamefield[i][j] == 3:
     			screen.blit(img3, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "4":
+    		elif gamefield[i][j] == 4:
     			screen.blit(img4, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "5":
+    		elif gamefield[i][j] == 5:
     			screen.blit(img5, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "6":
+    		elif gamefield[i][j] == 6:
     			screen.blit(img6, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "7":
+    		elif gamefield[i][j] == 7:
     			screen.blit(img7, (i * SIDE, j * SIDE))
-    		elif gamefield[i][j] == "8":
+    		elif gamefield[i][j] == 8:
     			screen.blit(img8, (i * SIDE, j * SIDE))
     		else:
     			screen.blit(img0, (i * SIDE, j * SIDE))
