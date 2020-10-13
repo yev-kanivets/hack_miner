@@ -74,9 +74,7 @@ def GameIni():
 
 def HandleClick(x, y):
 	if gamefield[x][y] == "B":
-		return "GO"
 		print("Game Over!!!")
-		break
 	elif gamefield[x][y] == " ":
 		return "OS"
 	else:
@@ -115,7 +113,17 @@ SCREEN_H = H * SIDE;
 SCREEN_W = W * SIDE;
 
 screen = pygame.display.set_mode([SCREEN_W, SCREEN_H])
-bombImg = pygame.image.load(r'./bomb.png') 
+
+imgBomb = pygame.image.load(r'./bomb.png')
+img0 = pygame.image.load(r'./0.png')
+img1 = pygame.image.load(r'./1.png')
+img2 = pygame.image.load(r'./2.png')
+img3 = pygame.image.load(r'./3.png')
+img4 = pygame.image.load(r'./4.png')
+img5 = pygame.image.load(r'./5.png')
+img6 = pygame.image.load(r'./6.png')
+img7 = pygame.image.load(r'./7.png')
+img8 = pygame.image.load(r'./8.png')
 
 running = True
 while running:
@@ -132,11 +140,27 @@ while running:
 
     for i in range(H):
     	for j in range(W):
+    		print(gamefield[i][j])
     		if gamefield[i][j] == "B":
-    			screen.blit(bombImg, (i * SIDE, j * SIDE))
+    			screen.blit(imgBomb, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "1":
+    			screen.blit(img1, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "2":
+    			screen.blit(img2, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "3":
+    			screen.blit(img3, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "4":
+    			screen.blit(img4, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "5":
+    			screen.blit(img5, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "6":
+    			screen.blit(img6, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "7":
+    			screen.blit(img7, (i * SIDE, j * SIDE))
+    		elif gamefield[i][j] == "8":
+    			screen.blit(img8, (i * SIDE, j * SIDE))
     		else:
-    			pygame.draw.rect(screen, (0, 0, 255), (i * SIDE, j * SIDE, (i + 1) * SIDE, (j + 1) * SIDE))
-
+    			screen.blit(img0, (i * SIDE, j * SIDE))
     		
 
     pygame.display.flip()
