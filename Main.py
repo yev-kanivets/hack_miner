@@ -5,6 +5,7 @@ visGF = []
 H = 9
 W = 9
 N = 12
+isPlaying = True
 
 mode = input("Выберите режим (novice / student / adept / master / smith): \n")
 if mode == "novice":
@@ -86,9 +87,10 @@ def GameIni():
 			gamefield[bomb[0]-1][bomb[1]] += 1
 
 def HandleClick(x, y):
+	global isPlaying
 	visGF[x][y] = True
 	if gamefield[x][y] == "B":
-		playing = False
+		isPlaying = False
 		print("Game Over!!!")
 
 GameIni()
@@ -123,7 +125,8 @@ while running:
         	pos = pygame.mouse.get_pos()
         	x = int(pos[0] / SIDE)
         	y = int(pos[1] / SIDE)
-        	HandleClick(x, y)
+        	if isPlaying:
+        		HandleClick(x, y)
 
     screen.fill((255, 255, 255))
 
